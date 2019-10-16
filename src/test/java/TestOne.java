@@ -1,10 +1,10 @@
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-
-import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class TestOne {
 
@@ -12,12 +12,8 @@ public class TestOne {
 
     @Before
     public void before() {
-        System.setProperty("webdriver.chrome.driver", "/home/vmejinskii/Desktop/Selenium/src/test/resources/chromedriver");
-        driver = new ChromeDriver();
-        driver.manage().deleteAllCookies();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
+        WebDriverManager.firefoxdriver().setup();
+        driver = new FirefoxDriver();
     }
 
     @Test
@@ -27,6 +23,8 @@ public class TestOne {
 
     @After
     public void after() {
-        driver.close();
+        if (driver != null) {
+            driver.quit();
+        }
     }
 }
