@@ -31,7 +31,7 @@ public class TestOne {
     public void test_01_Search() {
         driver.findElement(By.cssSelector(".gLFyf.gsfi")).sendKeys("CSS vs XPATH locators");
         driver.findElement(By.cssSelector(".gNO89b")).click();
-        List<WebElement> rows = driver.findElements(By.xpath("//div/a/div/img[@data-atf]"));
+        List<WebElement> rows = driver.findElements(By.xpath("//div[@class ='r' and not(ancestor::*[@class='related-question-pair'])]"));
         System.out.println("Number of rows: " + rows.size());
         assertArrayEquals(new int[]{11}, new int[]{rows.size()});
         driver.findElements(By.cssSelector("h3[class='LC20lb']")).get(0).click();
