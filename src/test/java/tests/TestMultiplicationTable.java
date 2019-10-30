@@ -38,7 +38,7 @@ public class TestMultiplicationTable {
     private void checkPageNumber(Integer count) {
         String expectedResult = String.valueOf(count);
         String pageNumber = driver.findElement(NUMBER_OF_QUESTIONS).getText();;
-        assert expectedResult.equals(pageNumber);
+        Assert.assertEquals(pageNumber, expectedResult);
     }
 
     private void ResultTitle(String Result) {
@@ -66,7 +66,7 @@ public class TestMultiplicationTable {
     @Test
     public void test_02_Answer_All_Questions() {
         String bodyText = driver.findElement(FIRST_PAGE_TEST_INSTRUCTION).getText();
-        Assert.assertTrue(bodyText.contains("Внимательно прочитайте пример и напишите получившийся ответ в окошко. Удачи в прохождении!"));
+        Assert.assertEquals(bodyText, "Внимательно прочитайте пример и напишите получившийся ответ в окошко. Удачи в прохождении!");
         clickButtonNext();
         for (int i = 1; i < 11; i++) {
             checkPageNumber(i);
