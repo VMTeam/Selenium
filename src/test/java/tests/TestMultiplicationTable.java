@@ -65,7 +65,6 @@ public class TestMultiplicationTable {
     public void test_01_Empty_Answer_Field() {
         checkFirstPage();
         clickButtonNext();
-        clickButtonNext();
         emptyAnswerField("Ответьте, пожалуйста, на вопрос.");
     }
 
