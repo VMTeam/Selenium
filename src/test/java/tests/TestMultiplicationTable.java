@@ -35,16 +35,10 @@ public class TestMultiplicationTable {
         Assert.assertEquals(failText, Fail);
     }
 
-    private void checkPageNumber() {
-
-        int i = 1;
-
-        while (i <= 10) {
-            String pageNumber = driver.findElement(NUMBER_OF_QUESTIONS).getText();
-            int Page = Integer.parseInt(pageNumber);
-            Assert.assertEquals(Page, i);
-            i++;
-        }
+    private void checkPageNumber(Integer count) {
+        String expectedResult = String.valueOf(count);
+        String pageNumber = driver.findElement(NUMBER_OF_QUESTIONS).getText();;
+        assert expectedResult.equals(pageNumber);
     }
 
     private void ResultTitle(String Result) {
@@ -66,7 +60,6 @@ public class TestMultiplicationTable {
         checkFirstPage();
         clickButtonNext();
         clickButtonNext();
-        checkPageNumber();
         emptyAnswerField("Ответьте, пожалуйста, на вопрос.");
     }
 
@@ -76,10 +69,9 @@ public class TestMultiplicationTable {
         Assert.assertTrue(bodyText.contains("Внимательно прочитайте пример и напишите получившийся ответ в окошко. Удачи в прохождении!"));
         clickButtonNext();
         for (int i = 1; i < 11; i++) {
-            checkPageNumber();
+            checkPageNumber(i);
             fillAnswerInput("56");
             clickButtonNext();
-            i++;
         }
         ResultTitle("Результат");
     }
