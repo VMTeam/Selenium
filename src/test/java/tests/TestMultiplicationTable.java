@@ -16,13 +16,9 @@ public class TestMultiplicationTable {
 
     WebDriver driver;
 
-    @Before
-    public void before() {
-        WebDriverManager.chromedriver().version("77.0").setup();
-        driver = new ChromeDriver();
-        driver.manage().window().setSize(new Dimension(1820, 900));
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.get("https://onlinetestpad.com/ru/test/68962-tablica-umnozheniya");
+    private void checkFirstPage() {
+        String bodyText = driver.findElement(FIRST_PAGE_TEST_INSTRUCTION).getText();
+        Assert.assertTrue(bodyText.contains("Внимательно прочитайте пример и напишите получившийся ответ в окошко. Удачи в прохождении!"));
     }
 
     private void clickButtonNext() {
@@ -36,85 +32,55 @@ public class TestMultiplicationTable {
     private void emptyAnswerField(String Fail) {
         driver.findElement(NEXT_BUTTON).click();
         String failText = driver.findElement(ALERT_FAIL).getText();
-        Assert.assertTrue(failText.contains(Fail));
+        Assert.assertEquals(failText, Fail);
     }
 
-    private void checkPageNumber(String PageNumber) {
-        String pageNumber = driver.findElement(NUMBER_OF_QUESTIONS).getText();
-        Assert.assertTrue(pageNumber.contains(PageNumber));
+    private void checkPageNumber() {
+
+        int i = 1;
+
+        while (i <= 10) {
+            String pageNumber = driver.findElement(NUMBER_OF_QUESTIONS).getText();
+            int Page = Integer.parseInt(pageNumber);
+            Assert.assertEquals(Page, i);
+            i++;
+        }
     }
 
     private void ResultTitle(String Result) {
         String pageNumber = driver.findElement(RESULT_TITLE).getText();
-        Assert.assertTrue(pageNumber.contains(Result));
+        Assert.assertEquals(pageNumber, Result);
+    }
+
+    @Before
+    public void before() {
+        WebDriverManager.chromedriver().version("77.0").setup();
+        driver = new ChromeDriver();
+        driver.manage().window().setSize(new Dimension(1820, 900));
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.get("https://onlinetestpad.com/ru/test/68962-tablica-umnozheniya");
     }
 
     @Test
-    public void test_01_First_Page() {
+    public void test_01_Empty_Answer_Field() {
+        checkFirstPage();
+        clickButtonNext();
+        clickButtonNext();
+        checkPageNumber();
+        emptyAnswerField("Ответьте, пожалуйста, на вопрос.");
+    }
+
+    @Test
+    public void test_02_Answer_All_Questions() {
         String bodyText = driver.findElement(FIRST_PAGE_TEST_INSTRUCTION).getText();
         Assert.assertTrue(bodyText.contains("Внимательно прочитайте пример и напишите получившийся ответ в окошко. Удачи в прохождении!"));
         clickButtonNext();
-    }
-
-    @Test
-    public void test_02_Empty_Answer_Field(){
-        clickButtonNext();
-        checkPageNumber("1");
-        emptyAnswerField("Ответьте, пожалуйста, на вопрос.");
-    }
-
-    /*@Test
-    public void test_03_Answer_All_Questions() {
-        for (int i = 1; i > 1; i--) {
-            checkPageNumber("1"+i);
-            fillAnswerInput("12"+i);
+        for (int i = 1; i < 11; i++) {
+            checkPageNumber();
+            fillAnswerInput("56");
             clickButtonNext();
+            i++;
         }
-    }*/
-
-    @Test
-    public void test_04_Answer_Result() {
-        clickButtonNext();
-        checkPageNumber("1");
-        emptyAnswerField("Ответьте, пожалуйста, на вопрос.");
-        fillAnswerInput("12");
-        clickButtonNext();
-        checkPageNumber("2");
-        emptyAnswerField("Ответьте, пожалуйста, на вопрос.");
-        fillAnswerInput("25");
-        clickButtonNext();
-        checkPageNumber("3");
-        emptyAnswerField("Ответьте, пожалуйста, на вопрос.");
-        fillAnswerInput("45");
-        clickButtonNext();
-        checkPageNumber("4");
-        emptyAnswerField("Ответьте, пожалуйста, на вопрос.");
-        fillAnswerInput("23");
-        clickButtonNext();
-        checkPageNumber("5");
-        emptyAnswerField("Ответьте, пожалуйста, на вопрос.");
-        fillAnswerInput("12");
-        clickButtonNext();
-        checkPageNumber("6");
-        emptyAnswerField("Ответьте, пожалуйста, на вопрос.");
-        fillAnswerInput("98");
-        clickButtonNext();
-        checkPageNumber("7");
-        emptyAnswerField("Ответьте, пожалуйста, на вопрос.");
-        fillAnswerInput("78");
-        clickButtonNext();
-        checkPageNumber("8");
-        emptyAnswerField("Ответьте, пожалуйста, на вопрос.");
-        fillAnswerInput("76");
-        clickButtonNext();
-        checkPageNumber("9");
-        emptyAnswerField("Ответьте, пожалуйста, на вопрос.");
-        fillAnswerInput("45");
-        clickButtonNext();
-        checkPageNumber("10");
-        emptyAnswerField("Ответьте, пожалуйста, на вопрос.");
-        fillAnswerInput("77");
-        clickButtonNext();
         ResultTitle("Результат");
     }
 
