@@ -22,9 +22,9 @@ public class TestMultiplicationTable {
     By ANSWER_INPUT_FIELD = (By.cssSelector(".otp-textbox.digit"));
     By RESULT_TITLE = (By.cssSelector(".otp-item-result .title"));
 
-    private void checkFirstPage() {
+    private void checkFirstPage(String Title) {
         String bodyText = driver.findElement(FIRST_PAGE_TEST_INSTRUCTION).getText();
-        Assert.assertTrue(bodyText.contains("Внимательно прочитайте пример и напишите получившийся ответ в окошко. Удачи в прохождении!"));
+        Assert.assertEquals(bodyText, Title);
     }
 
     private void clickButtonNext() {
@@ -63,15 +63,14 @@ public class TestMultiplicationTable {
 
     @Test
     public void test_01_Empty_Answer_Field() {
-        checkFirstPage();
+        checkFirstPage("Внимательно прочитайте пример и напишите получившийся ответ в окошко. Удачи в прохождении!");
         clickButtonNext();
         emptyAnswerField("Ответьте, пожалуйста, на вопрос.");
     }
 
     @Test
     public void test_02_Answer_All_Questions() {
-        String bodyText = driver.findElement(FIRST_PAGE_TEST_INSTRUCTION).getText();
-        Assert.assertEquals(bodyText, "Внимательно прочитайте пример и напишите получившийся ответ в окошко. Удачи в прохождении!");
+        checkFirstPage("Внимательно прочитайте пример и напишите получившийся ответ в окошко. Удачи в прохождении!");
         clickButtonNext();
         for (int i = 1; i < 11; i++) {
             checkPageNumber(i);
