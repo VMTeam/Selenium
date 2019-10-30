@@ -3,18 +3,24 @@ package tests;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.*;
 import org.junit.runners.MethodSorters;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.concurrent.TimeUnit;
 
-import static pageObjects.TablePageObjects.*;
-
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestMultiplicationTable {
 
     WebDriver driver;
+
+    By FIRST_PAGE_TEST_INSTRUCTION = (By.cssSelector(".otp-item-view-instr"));
+    By NEXT_BUTTON = (By.cssSelector("#btnNext"));
+    By ALERT_FAIL = (By.cssSelector(".alert-warning"));
+    By NUMBER_OF_QUESTIONS = (By.cssSelector(".header .num"));
+    By ANSWER_INPUT_FIELD = (By.cssSelector(".otp-textbox.digit"));
+    By RESULT_TITLE = (By.cssSelector(".otp-item-result .title"));
 
     private void checkFirstPage() {
         String bodyText = driver.findElement(FIRST_PAGE_TEST_INSTRUCTION).getText();
@@ -37,7 +43,7 @@ public class TestMultiplicationTable {
 
     private void checkPageNumber(Integer count) {
         String expectedResult = String.valueOf(count);
-        String pageNumber = driver.findElement(NUMBER_OF_QUESTIONS).getText();;
+        String pageNumber = driver.findElement(NUMBER_OF_QUESTIONS).getText();
         Assert.assertEquals(pageNumber, expectedResult);
     }
 
