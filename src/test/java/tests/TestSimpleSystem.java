@@ -14,7 +14,7 @@ public class TestSimpleSystem extends BaseMethods {
     private static String PASSWORD = "Pass#12345";
 
     @BeforeClass
-    public static void beforeClass() {
+    public static void setUp() {
         baseMethods.upChrome77();
     }
 
@@ -32,7 +32,7 @@ public class TestSimpleSystem extends BaseMethods {
 
     @Test
     public void test_01_Check_Element_On_Page() {
-        elementShouldHaveText(Accounts.USER_NAME_TITLE, "Oleg Kutc");
+        elementShouldHaveText(Accounts.USER_NAME_TITLE, "OLEG KUTC");
         elementShouldHaveText(Accounts.COMPANY_NAME_TITLE, "QASCA");
     }
 }

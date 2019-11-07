@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 
 public class BaseMethods {
 
-    WebDriver driver;
+    static WebDriver driver;
 
     public void upChrome77() {
         WebDriverManager.chromedriver().version("77.0").setup();
