@@ -1,13 +1,13 @@
 package methods;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.concurrent.TimeUnit;
-
-import static javax.swing.UIManager.get;
 
 public class BaseMethods {
 
@@ -27,7 +27,21 @@ public class BaseMethods {
         }
     }
 
-    public void openPage(String path) {
-        get(path);
+    public void openLoginPage() {
+        driver.get("https://qasca-554.reallysimplesystems.com/login");
+    }
+
+    public void clickOnElement (By element) {
+        driver.findElement(element).isEnabled();
+        driver.findElement(element).click();
+    }
+
+    public void sendKeysToElement(By element, String text) {
+        driver.findElement(element).sendKeys(text);
+    }
+
+    public void elementShouldHaveText(By element, String text) {
+        String Object = driver.findElement(element).getText();
+        Assert.assertEquals(Object, text);
     }
 }
