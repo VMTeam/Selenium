@@ -27,11 +27,11 @@ public class BaseMethods {
         }
     }
 
-    public void openLoginPage() {
-        driver.get("https://qasca-554.reallysimplesystems.com/login");
+    public void openPage(String path) {
+        driver.get(path);
     }
 
-    public void clickOnElement (By element) {
+    public void clickOnElement(By element) {
         driver.findElement(element).isEnabled();
         driver.findElement(element).click();
     }
@@ -43,5 +43,15 @@ public class BaseMethods {
     public void elementShouldHaveText(By element, String text) {
         String Object = driver.findElement(element).getText();
         Assert.assertEquals(Object, text);
+    }
+
+    public void elementShouldBeVisible(By element) {
+        driver.findElement(element).isDisplayed();
+    }
+
+    public void listShouldHaveSize(By collection, int num) {
+        int count;
+        count = driver.findElements(collection).size();
+        Assert.assertEquals(count, num);
     }
 }

@@ -19,5 +19,6 @@ public class SimpleSystemsPageObjects {
         public static By PAGE_TITLE = (By.cssSelector(".page_title .active"));
         public static By USER_NAME_TITLE = (By.cssSelector(".username"));
         public static By COMPANY_NAME_TITLE = (By.cssSelector(".company_name"));
+        public static By TABLE_USERS_LIST = (By.cssSelector(".sorting_1 .view_link"));
     }
 }

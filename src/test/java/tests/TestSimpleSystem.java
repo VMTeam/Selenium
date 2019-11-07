@@ -20,7 +20,7 @@ public class TestSimpleSystem extends BaseMethods {
 
     @Before
     public void before() {
-        baseMethods.openLoginPage();
+        baseMethods.openPage("https://qasca-554.reallysimplesystems.com/login");
         SimpleSystemsMethods.LoginSystem(EMAIL, PASSWORD);
         SimpleSystemsMethods.SwitchToAccountsPage();
     }
@@ -34,5 +34,6 @@ public class TestSimpleSystem extends BaseMethods {
     public void test_01_Check_Element_On_Page() {
         elementShouldHaveText(Accounts.USER_NAME_TITLE, "OLEG KUTC");
         elementShouldHaveText(Accounts.COMPANY_NAME_TITLE, "QASCA");
+        listShouldHaveSize(Accounts.TABLE_USERS_LIST, 8);
     }
 }
