@@ -8,7 +8,7 @@ public class SimpleSystemsMethods extends BaseMethods {
         sendKeysToElement(LoginPage.EMAIL_FIELD, Email);
         sendKeysToElement(LoginPage.PASSWORD_FIELD, Pass);
         clickOnElement(LoginPage.LOGIN_BUTTON);
-        elementShouldHaveText(Dashboard.TITLE, "Good Evening Oleg");
+        elementShouldHaveText(Dashboard.TITLE, "Good Morning Oleg");
     }
 
     public void SwitchToAccountsPage () {

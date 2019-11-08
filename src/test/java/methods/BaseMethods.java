@@ -5,8 +5,10 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class BaseMethods {
@@ -53,5 +55,11 @@ public class BaseMethods {
         int count;
         count = driver.findElements(collection).size();
         Assert.assertEquals(count, num);
+    }
+
+    public void listShouldHaveTexts(By collection, String... listTexts) {
+        List<WebElement> UserList = driver.findElements(collection);
+        Assert.assertEquals(UserList, listTexts);
+
     }
 }
