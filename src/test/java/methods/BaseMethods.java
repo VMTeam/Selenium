@@ -1,33 +1,17 @@
 package methods;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class BaseMethods {
 
-    static WebDriver driver;
-
-    public void upChrome77() {
-        WebDriverManager.chromedriver().version("77.0").setup();
-        driver = new ChromeDriver();
-        driver.manage().window().setSize(new Dimension(1820, 900));
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-    }
-
-    public void webDriverDown() {
-
-        if (driver != null) {
-            driver.quit();
-        }
-    }
+    public static WebDriver driver;
 
     public void openPage(String path) {
         driver.get(path);
@@ -51,6 +35,17 @@ public class BaseMethods {
         driver.findElement(element).isDisplayed();
     }
 
+    public void elementWaitVisible(By element) {
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(element));
+    }
+
+    public void elementWaitInVisible(By element) {
+        elementWaitVisible(element);
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(element));
+    }
+
     public void listShouldHaveSize(By collection, int num) {
         int count;
         count = driver.findElements(collection).size();
@@ -60,6 +55,5 @@ public class BaseMethods {
     public void listShouldHaveTexts(By collection, String... listTexts) {
         List<WebElement> UserList = driver.findElements(collection);
         Assert.assertEquals(UserList, listTexts);
-
     }
 }
