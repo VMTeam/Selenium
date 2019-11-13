@@ -21,4 +21,11 @@ public class TestAccountsPage extends BaseClass {
     public void test_01_Check_Number_Of_Users_In_Table() {
         AccountsPageSteps.assertNumberOfUsersInTable(8);
     }
+
+    @Test
+    public void test_02_Search_User_By_Name() {
+        AccountsPageSteps.searchUser("Richmond");
+        AccountsPageSteps.assertNumberOfUsersInTable(1);
+        AccountsPageSteps.assertUsersNameInTable("Richmond Talents");
+    }
 }

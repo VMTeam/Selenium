@@ -23,4 +23,14 @@ public class AccountsPageSteps extends BaseMethods {
     public void assertNumberOfUsersInTable (Integer count) {
         listShouldHaveSize(Accounts.TABLE_USERS_LIST, count);
     }
+
+    public void searchUser (String Text) {
+        sendKeysToElement(Accounts.SEARCH_FIELD, Text);
+        clickOnElement(Accounts.SEARCH_ICON);
+    }
+
+    public void assertUsersNameInTable (String ...Text) {
+        listShouldHaveTexts(Accounts.TABLE_USERS_LIST, Text);
+        elementWaitInVisible(Accounts.TABLE_LOADING_GIF);
+    }
 }

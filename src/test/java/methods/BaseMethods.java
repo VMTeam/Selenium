@@ -13,7 +13,7 @@ import java.util.List;
 public class BaseMethods extends BaseClass {
 
     public void openPage(String path) {
-        System.out.println("driver"+driver);
+        System.out.println("driver" + driver);
         driver.get(path);
     }
 

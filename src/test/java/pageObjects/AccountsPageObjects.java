@@ -24,7 +24,7 @@ public class AccountsPageObjects {
         public static By PAGE_TITLE = (By.cssSelector(".page_title .active"));
         public static By USER_NAME_TITLE = (By.cssSelector(".username"));
         public static By COMPANY_NAME_TITLE = (By.cssSelector(".company_name"));
-        public static By TABLE_USERS_LIST = (By.cssSelector(".sorting_1 .view_link"));
+        public static By TABLE_USERS_LIST = (By.cssSelector(".view_link"));
         public static By SEARCH_FIELD = (By.id("Accounts_basic_filter"));
         public static By ADD_USER_BUTTON = (By.cssSelector(".grd_btn_create"));
         public static By CANCEL_BUTTON = (By.id("header_cancel"));
