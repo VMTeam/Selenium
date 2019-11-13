@@ -1,15 +1,17 @@
 package tests;
 
 import methods.AccountsPageSteps;
+import methods.BaseMethods;
 import org.junit.*;
 import org.junit.runners.MethodSorters;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestAccountsPage extends BaseClass {
-    private AccountsPageSteps AccountsPageSteps = new AccountsPageSteps();
+    private static AccountsPageSteps AccountsPageSteps = new AccountsPageSteps();
+    private static BaseMethods BaseMethods = new BaseMethods();
 
-    @Before
-    public void before() {
+    @BeforeClass
+    public static void before() {
         AccountsPageSteps.openLoginPage();
         AccountsPageSteps.loginSystem("oleg.kutc@gmail.com", "Pass#12345");
         AccountsPageSteps.switchToAccountsPage();

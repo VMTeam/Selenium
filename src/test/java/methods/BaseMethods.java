@@ -6,14 +6,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import tests.BaseClass;
 
 import java.util.List;
 
-public class BaseMethods {
-
-    public static WebDriver driver;
+public class BaseMethods extends BaseClass {
 
     public void openPage(String path) {
+        System.out.println("driver"+driver);
         driver.get(path);
     }
 
