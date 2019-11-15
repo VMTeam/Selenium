@@ -44,5 +44,7 @@ public class TestAccountsPage extends BaseClass {
     public void test_04_Search_Nonexistent_User() {
         AccountsPageSteps.searchUser("Ololosha");
         AccountsPageSteps.assertEmptyUsersTable("No matching records found");
+        AccountsPageSteps.resetSearchField();
+        AccountsPageSteps.assertNumberOfUsersInTable(8);
     }
 }
