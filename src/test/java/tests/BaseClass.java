@@ -31,8 +31,8 @@ public class BaseClass {
         }
     }
 
-    @Before
+    /*@Before
     public void beforeBase() {
         driver.manage().deleteAllCookies();
-    }
+    }*/
 }
